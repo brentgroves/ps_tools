@@ -4,3 +4,6 @@ write-host "If this script were really going to do something, it would do it on 
 
 # .\Named_Parameters_Example_2.ps1 HAL Odyssey 
 # .\Named_Parameters_Example_2.ps1 -envname Odyssey -servername HAL 
+#  C:\Users\bgroves\source\repos\ps_tools\common\powershell.exe .\Named_Parameters_Example_2.ps1 HAL Odyssey 
+# powershell.exe -NoProfile -ExecutionPolicy ByPass -Command "if (Test-Path 'C:\SSIS\Data\test.csv') {exit 0} else {exit 999}"
+#

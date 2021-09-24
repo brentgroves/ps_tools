@@ -1,0 +1,1 @@
+Invoke-Command -ComputerName ALB-60409WJ-IT -ScriptBlock { Test-Connection -ComputerName MSCEDONHOSTBG } -credential bgroves

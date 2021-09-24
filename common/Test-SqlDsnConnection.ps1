@@ -1,34 +1,24 @@
 # https://mcpmag.com/articles/2018/12/10/test-sql-connection-with-powershell.aspx
 # powershell.one
-param ($server, $database,$user,$password,$port) 
+param ($dsn, $user,$password) 
 
-function Test-SqlConnection {
+function Test-SqlDsnConnection {
     param(
         [Parameter(Mandatory)]
-        [string]$server,
-
-        [Parameter(Mandatory)]
-        [string]$database,
+        [string]$dsn,
 
         [Parameter(Mandatory)]
         [string]$user,
 
         [Parameter(Mandatory)]
-        [string]$password,
-
-        [string]$port
+        [string]$password
     )
 # Causes error to throw exception
     $ErrorActionPreference = 'Stop'
 
     try {
         # write-host "Start"
-        $serverPort = $server
-        if($port -ne $null)
-        {
-            $serverPort += ',' + $port
-        }
-        $connectionString = 'Data Source={0};database={1};User ID={2};Password={3}' -f $serverPort,$database,$user,$password
+        $connectionString = 'DSN={0};User ID={1};Password={2}' -f $dsn,$user,$password
         $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $ConnectionString
         $sqlConnection.Open()
         ## This will run if the Open() method does not throw an exception
@@ -44,14 +34,8 @@ function Test-SqlConnection {
         $sqlConnection.Close()
     }
 }
-#  "if (Test-Path '" + @[User::TestFilePath] + "') {exit 0} else {exit 999}\
-# Test-SqlConnection -ServerName 'busche-sql' -DatabaseName 'Busche ToolList' -userName 'sa' -psw 'buschecnc1'
-if($null -ne $port)
-{
-    $retcode = Test-SqlConnection -server $server -database $database -user $user -password $password -port $port
-} else {
-    $retcode = Test-SqlConnection -server $server -database $database -user $user -password $password 
-}
+
+$retcode = Test-SqlDsnConnection -dsn $dsn -user $user -password $password 
 
 if ($retcode -eq $true) 
 {

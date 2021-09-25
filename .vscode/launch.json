@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "DSN",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "args": ["-dsn 'Plex' -user 'mg.odbcalbion' -password 'Mob3xalbion'"],
+            "cwd": "${file}"
+        },
+        {
+            "name": "Without port",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "args": ["-server 'mgsqlsrv.database.windows.net' -database 'mgdw' -user 'mgadmin' -password 'WeDontSharePasswords1!' -port '1433'"],
+            "cwd": "${file}"
+        },
+        {
+            "name": "With port",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "args": ["-server 'mgsqlmi.public.48d444e7f69b.database.windows.net' -database 'mgdw' -user 'mgadmin' -password 'WeDontSharePasswords1!'"],
+            "cwd": "${file}"
+        },
+        {
+            "name": "PowerShell: Launch Current File",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "cwd": "${file}"
+        }
+    ]
+}
